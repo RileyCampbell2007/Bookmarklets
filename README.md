@@ -26,3 +26,6 @@ Our JS files will need to be converted to Bookmarklets at [hacker-point](https:/
 
 - Dark Mode  
   Changes a pages color pallete.
+
+- Doged  
+  Replaces every image with Doge.
