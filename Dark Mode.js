@@ -1,4 +1,4 @@
-if (typeof set == 'undefined') {
+if (typeof window.set == 'undefined') {
     let styles = document.createElement('style');
     styles.innerHTML += `
 .darkmode-dark {
@@ -28,7 +28,7 @@ if (typeof set == 'undefined') {
     border-color: #000000 !important;
 }`;
     document.head.appendChild(randStyles);
-    const set = "set";
+    window.set = "set";
 };
 
 const removeClasses = function() {
@@ -40,7 +40,7 @@ const removeClasses = function() {
     });
 };
 
-let mode = prompt("Enter mode (dark, light, blue, original, random):");
+let mode = prompt("Enter mode (dark, light, blue, custom, random, original):");
 if (mode == 'random') {
     let hexColor = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
     const r = parseInt(hexColor.substr(1, 2), 16);
@@ -71,6 +71,31 @@ if (mode == 'random') {
     document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-blue'));
 } else if (mode == 'original') {
     removeClasses();
+} else if (mode == "custom") {
+    let hexColor = prompt("Input a Hex Color value, eg:#FFFFFF");
+    var hexCodePattern = /^#?([0-9A-F]{3}){1,2}$/i;
+    if (hexCodePattern.test(hexColor)) {
+        const r = parseInt(hexColor.substr(1, 2), 16);
+        const g = parseInt(hexColor.substr(3, 2), 16);
+        const b = parseInt(hexColor.substr(5, 2), 16);
+        const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+        let textColor = luminance > 0.5 ? "#000000" : "#FFFFFF";
+        document.head.removeChild(document.getElementById('darkmode-random-color-styles'));
+        let randStyles = document.createElement('style');
+        randStyles.id = 'darkmode-random-color-styles';
+        randStyles.innerHTML = `
+.darkmode-random {
+    color: ` + textColor + ` !important;
+    background-color: ` + hexColor + ` !important;
+    border-color: ` + textColor + ` !important;
+}`;
+        document.head.appendChild(randStyles);
+        removeClasses();
+        document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-random'));
+    } else {
+        alert('Invalid Hex Color!')
+    };
+
 } else {
     alert('Invalid mode!');
 }
