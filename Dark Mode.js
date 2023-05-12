@@ -32,11 +32,19 @@ if (typeof window.set == 'undefined') {
 };
 
 const removeClasses = function() {
-    document.body.querySelectorAll("*").forEach(el => {
-        el.classList.remove('darkmode-random'),
-        el.classList.remove('darkmode-dark'),
-        el.classList.remove('darkmode-light'),
+    document.querySelectorAll("*").forEach(el => {
+        el.classList.remove('darkmode-random')
+        el.classList.remove('darkmode-dark')
+        el.classList.remove('darkmode-light')
         el.classList.remove('darkmode-blue')
+    });
+};
+
+const addClasses = function(className) {
+    document.querySelectorAll('*').forEach(el => {
+        if(el.tagName!='style') {
+            el.classList.add(className);
+        };
     });
 };
 
@@ -59,16 +67,16 @@ if (mode == 'random') {
 }`;
     document.head.appendChild(randStyles);
     removeClasses();
-    document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-random'));
+    addClasses('darkmode-random')
 } else if (mode == 'dark') {
     removeClasses();
-    document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-dark'));
+    addClasses('darkmode-dark');
 } else if (mode == 'light') {
     removeClasses();
-    document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-light'));
+    addClasses('darkmode-light');
 } else if (mode == 'blue') {
     removeClasses();
-    document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-blue'));
+    addClasses('darkmode-blue');
 } else if (mode == 'original') {
     removeClasses();
 } else if (mode == "custom") {
@@ -91,7 +99,7 @@ if (mode == 'random') {
 }`;
         document.head.appendChild(randStyles);
         removeClasses();
-        document.body.querySelectorAll("*").forEach(el => el.classList.add('darkmode-random'));
+        addClasses('darkmode-random');
     } else {
         alert('Invalid Hex Color!')
     };
