@@ -29,3 +29,6 @@ Our JS files will need to be converted to Bookmarklets at [hacker-point](https:/
 
 - Doged  
   Replaces every image with Doge.
+
+- Variable Lister
+  Lists all JavaScript variables it can.
