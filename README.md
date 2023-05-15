@@ -2,7 +2,7 @@
 
 This repository is a collection of various Bookmarklets to assist you in your web browsing experience.
 A Bookmarklet is a snippet of Javascript code that can be run by clicking on a bookmark.
-Our JS files will need to be converted to Bookmarklets at [hacker-point](https://hacker-point.com/projects/bookmarklets/maker/) before use.
+Bookmarklet version of our JS Files can be found at [hacker-point](https://hacker-point.com/projects/bookmarklets/) before use.
 
 ### Our Bookmarklets
 
