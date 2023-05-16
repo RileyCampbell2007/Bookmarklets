@@ -32,3 +32,6 @@ Bookmarklet versions of our JS Files can be found at [hacker-point](https://hack
 
 - Variable Lister  
   Lists all JavaScript variables it can.
+
+- Youtube-DL  
+  Downloads videos, may work on websites other than youtube, however results may vary.
