@@ -1,0 +1,1 @@
+window.open('https://projectlounge.pw/ytdl/download?url='+location.href,'_blank')
