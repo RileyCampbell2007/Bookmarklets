@@ -21,12 +21,12 @@
             window.renderMessages = function() {
                 let container = document.getElementById('container')
                 container.innerHTML = ''
-                for (let message in window.AImessages) {
-                    message = window.AImessages[message]
+                for (let i in window.AImessages) {
+                    let message = window.AImessages[i]
                     if (message.role == "system") {
                         continue
                     }
-                    container.innerHTML += '<table><tr><th><p>' + message.role.charAt(0).toUpperCase() + message.role.slice(1) + ': </p></th><th style="white-space: break-spaces;">' + message.content + '</th></tr></table><hr class="solid">'
+                    container.innerHTML += '<table><tr><th><p>' + message.role.charAt(0).toUpperCase() + message.role.slice(1) + ': </p><button onclick="let message=document.querySelectorAll(`th[data-message-id='+"'"+i.toString()+"'"+']`)[0];message.innerHTML=`<textarea style=\'display: block; width: 95%; height: 100px; resize: none; margin-left: auto; margin-right: auto; margin-top:10px;\'>`+message.innerHTML+`</textarea><button onclick='+"'let message=this.parentElement;let text=message.getElementsByTagName(\\`textarea\\`)[0].value;window.AImessages[parseInt(message.getAttribute(\\`data-message-id\\`))].content=text;message.innerHTML=text'"+'>Save</button>`">Edit</button></th><th data-message-id="'+i.toString()+'" style="white-space: break-spaces;">' + message.content + '</th></tr></table><hr class="solid">'
                 }
                 window.scrollTo({
                     top: document.body.scrollHeight,
@@ -63,7 +63,7 @@
                     window.AImessages.push(result.choices[0].message)
                     window.renderMessages()
                 } else {
-                    document.getElementById('container').innerHTML = `Error ${response.status}: ${response.statusText}`;
+                    document.getElementById('container').innerHTML = `Error ${response.status}: ${response.statusText} <button onclick="document.getElementById('myTextArea').value=window.AImessages.pop().content;window.sendMessage()">Retry</button>`;
                 };
             }
             window.populateModels = async function() {
